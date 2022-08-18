@@ -25,9 +25,11 @@ export const Product = ({ product }: ProductProps) => {
       {showDetails && (
         <div>
           <p>{product.description}</p>
-          <p>
-            Rate: <span className='font-bold'>{product.rating.rate}</span>
-          </p>
+          {product.rating && (
+            <p>
+              Rate: <span className='font-bold'>{product?.rating?.rate}</span>
+            </p>
+          )}
         </div>
       )}
     </div>
