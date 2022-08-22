@@ -1,17 +1,15 @@
 import React from 'react';
 
-import { Todo } from '../types';
-
 type TodoItemProps = {
   todo: Todo;
   onDelete: (id: string) => void;
-  onChange: (id: string) => void;
+  onToggleComplete: (id: string) => void;
 };
 
 export const TodoItem = ({
   todo: { id, task, isCompleted },
   onDelete,
-  onChange,
+  onToggleComplete,
 }: TodoItemProps) => {
   return (
     <div
@@ -32,7 +30,7 @@ export const TodoItem = ({
           className='form-checkbox h-7 w-7'
           type='checkbox'
           checked={isCompleted}
-          onChange={() => onChange(id)}
+          onChange={() => onToggleComplete(id)}
         />
         <button
           aria-label='Delete todo'

@@ -4,18 +4,16 @@ import { todos as initialTodos } from '../data';
 import { TodoItem } from './TodoItem';
 import { AddTodo } from './AddTodo';
 
-import { Todo } from '../types';
-
 export const TodoList = () => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
-  const [task, setTask] = useState('');
+  const [task, setTask] = useState<string>('');
 
   const handleDeleteTodo = (id: string) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
 
-  const handleCheckTodo = (id: string) => {
+  const handleToggleComplete = (id: string) => {
     const newTodos = todos.map((todo) => {
       if (todo.id === id) {
         return {
@@ -35,7 +33,6 @@ export const TodoList = () => {
   const handleAddTodo = (todo: Todo) => {
     const newTodos = [...todos, todo];
     setTodos(newTodos);
-    setTask('');
   };
 
   const handleSubmitTodo = (e: FormEvent) => {
@@ -48,12 +45,13 @@ export const TodoList = () => {
       isCompleted: false,
     };
     handleAddTodo(todo);
+    setTask('');
   };
 
   return (
     <section className='w-10/12 sm:w-8/12 lg:w-1/2 max-w-2xl flex flex-col items-center'>
       <AddTodo
-        task={task}
+        value={task}
         onChange={handleChange}
         onAddTodo={handleSubmitTodo}
       />
@@ -64,7 +62,7 @@ export const TodoList = () => {
           key={todo.id}
           todo={todo}
           onDelete={handleDeleteTodo}
-          onChange={handleCheckTodo}
+          onToggleComplete={handleToggleComplete}
         />
       ))}
     </section>
