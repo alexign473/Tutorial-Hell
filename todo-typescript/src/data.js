@@ -15,6 +15,6 @@ export const todos = [
     id: '2',
     title: 'Task 2',
     task: 'Do laundry 3',
-    isCompleted: false,
+    isCompleted: true,
   },
 ];

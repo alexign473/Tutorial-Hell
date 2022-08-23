@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --grad-purple-to-blue: linear-gradient(
+    90deg,
+    rgba(105, 20, 204, 1) 0%,
+    rgba(44, 114, 251, 1) 100%
+  );
+}
+
+body {
+  background: var(--grad-purple-to-blue);
+}
+
+.bg-grad-purple-to-blue {
+  background: var(--grad-purple-to-blue);
+}

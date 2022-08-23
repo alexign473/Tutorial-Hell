@@ -13,28 +13,20 @@ export const TodoItem = ({
 }: TodoItemProps) => {
   return (
     <div
-      className={`flex w-full p-4 mb-2 justify-between items-center
-      ${isCompleted ? 'bg-gray-400' : 'bg-green-300'}
-    `}
+      className={`flex justify-between items-center mx-auto my-1 p-4 w-4/5 rounded-2xl shadow
+      ${isCompleted ? 'opacity-40' : ''}`}
     >
-      <p>{id}</p>
-      <p
-        className={`ml-2 text-xl font-sans font-medium
-        ${isCompleted ? 'text-white line-through' : 'text-gray-700'}
-      `}
-      >
-        {task}
-      </p>
+      <p className={`${isCompleted ? 'line-through' : ''}`}>{task}</p>
       <div className='w-1/6 flex justify-between items-center mr-2'>
         <input
-          className='form-checkbox h-7 w-7'
+          className='form-checkbox h-5 w-5'
           type='checkbox'
           checked={isCompleted}
           onChange={() => onToggleComplete(id)}
         />
         <button
           aria-label='Delete todo'
-          className='h-7 w-7 flex justify-center items-center bg-red-400 hover:bg-red-500 text-white font-bold rounded'
+          className='h-5 w-5 flex justify-center items-center bg-red-400 hover:bg-red-500 text-white rounded'
           onClick={() => onDelete(id)}
         >
           X

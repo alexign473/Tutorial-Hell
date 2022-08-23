@@ -4,7 +4,7 @@ import { todos as initialTodos } from '../data';
 import { TodoItem } from './TodoItem';
 import { AddTodo } from './AddTodo';
 
-export const TodoList = () => {
+export const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [task, setTask] = useState<string>('');
 
@@ -49,22 +49,27 @@ export const TodoList = () => {
   };
 
   return (
-    <section className='w-10/12 sm:w-8/12 lg:w-1/2 max-w-2xl flex flex-col items-center'>
-      <AddTodo
-        value={task}
-        onChange={handleChange}
-        onAddTodo={handleSubmitTodo}
-      />
-      <div className='h-10' />
-
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onDelete={handleDeleteTodo}
-          onToggleComplete={handleToggleComplete}
+    <div
+      className='flex flex-col justify-start w-[500px] min-h-[500px]
+    bg-white text-center rounded-md'
+    >
+      <h1 className='mx-auto my-8 text-2xl font-semibold'>Todo App</h1>
+      <section className='py-2'>
+        <AddTodo
+          value={task}
+          onChange={handleChange}
+          onAddTodo={handleSubmitTodo}
         />
-      ))}
-    </section>
+
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onDelete={handleDeleteTodo}
+            onToggleComplete={handleToggleComplete}
+          />
+        ))}
+      </section>
+    </div>
   );
 };
