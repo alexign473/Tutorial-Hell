@@ -8,12 +8,26 @@ export const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [task, setTask] = useState<string>('');
 
-  const handleDeleteTodo = (id: string) => {
+  const deleteTodo = (id: Todo['id']) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
 
-  const handleToggleComplete = (id: string) => {
+  const editTodo = (id: Todo['id'], newTask: Todo['task']) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        console.log(id);
+        return {
+          ...todo,
+          task: newTask,
+        };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+
+  const toggleCompleteTodo = (id: Todo['id']) => {
     const newTodos = todos.map((todo) => {
       if (todo.id === id) {
         return {
@@ -26,13 +40,13 @@ export const TodoApp = () => {
     setTodos(newTodos);
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTask(e.target?.value);
-  };
-
-  const handleAddTodo = (todo: Todo) => {
+  const addTodo = (todo: Todo) => {
     const newTodos = [...todos, todo];
     setTodos(newTodos);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTask(e.target?.value);
   };
 
   const handleSubmitTodo = (e: FormEvent) => {
@@ -40,11 +54,11 @@ export const TodoApp = () => {
     if (!task) return;
 
     const todo: Todo = {
-      id: String(Math.floor(Math.random() * 100) + todos.length),
+      id: todos.length ? todos[todos.length - 1].id + 1 : 0,
       task,
       isCompleted: false,
     };
-    handleAddTodo(todo);
+    addTodo(todo);
     setTask('');
   };
 
@@ -65,8 +79,9 @@ export const TodoApp = () => {
           <TodoItem
             key={todo.id}
             todo={todo}
-            onDelete={handleDeleteTodo}
-            onToggleComplete={handleToggleComplete}
+            onDelete={deleteTodo}
+            onEdit={editTodo}
+            onToggleComplete={toggleCompleteTodo}
           />
         ))}
       </section>

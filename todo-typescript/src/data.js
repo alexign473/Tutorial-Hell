@@ -1,18 +1,18 @@
 export const todos = [
   {
-    id: '0',
+    id: 0,
     title: 'Task 1',
     task: 'Do laundry 1',
     isCompleted: false,
   },
   {
-    id: '1',
+    id: 1,
     title: 'Task 2',
     task: 'Do laundry 2',
     isCompleted: false,
   },
   {
-    id: '2',
+    id: 2,
     title: 'Task 2',
     task: 'Do laundry 3',
     isCompleted: true,

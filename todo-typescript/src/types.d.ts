@@ -1,5 +1,11 @@
 type Todo = {
-  id: string;
+  id: number;
   task: string;
   isCompleted: boolean;
+};
+
+type Option = {
+  value: string;
+  color?: string;
+  onClick: () => void;
 };
