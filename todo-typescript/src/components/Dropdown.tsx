@@ -14,13 +14,13 @@ export const Dropdown = ({ options }: DropdownProps) => {
   };
 
   return (
-    <div className='relative inline-block opacity-80  z-10'>
+    <div className='relative inline-block z-10'>
       <BsThreeDotsVertical
         className='cursor-pointer'
         onClick={toggleDropdown}
       />
       {isOpen && (
-        <div className='absolute top-0 right-4 p-2 shadow bg-white'>
+        <div className='absolute top-0 right-5 shadow bg-white'>
           {options.map((option: Option) => (
             <button
               className={`w-full text-left bg-white px-5 py-2 hover:bg-gray-300`}
